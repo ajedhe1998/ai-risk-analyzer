@@ -1,0 +1,1 @@
+Release candidate includes payment refactor and authentication updates.
