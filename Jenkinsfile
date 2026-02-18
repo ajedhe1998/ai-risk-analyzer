@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/ajedhe1998/ai-risk-analyzer.git', credentialsId: 'ajedhe1998'
+                git branch: 'main', url: 'git@github.com:ajedhe1998/ai-risk-analyzer.git', credentialsId: 'github-ssh-creds'
             }
         }
         stage('Build Docker Image') {
