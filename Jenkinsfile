@@ -14,13 +14,22 @@ pipeline {
                 sh 'docker build -t $IMAGE_NAME .'
             }
         }
-        // stage('Push to Docker Registry') {
-        //     steps {
-        //         withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-        //             sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-        //             sh 'docker push $IMAGE_NAME'
-        //         }
-        //     }
-        // }
+        stage('Login to GHCR') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'ajedhe1998',
+                        usernameVariable: 'GITHUB_USER',
+                        passwordVariable: 'GITHUB_TOKEN')]) {
+                    sh 'echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USER --password-stdin'
+                }
+            }
+        }
+
+        stage('Push Image to GHCR') {
+            steps {
+                sh 'docker push $IMAGE_NAME:latest'
+            }
+        }
+    }
+        
     }
 }
