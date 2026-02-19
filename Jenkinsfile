@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = 'your-dockerhub-username/ai-risk-analyzer'
+        IMAGE_NAME = 'ghcr.io/ajedhe1998/ai-risk-analyzer'
     }
     stages {
         stage('Checkout') {
